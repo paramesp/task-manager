@@ -2,12 +2,7 @@ const server = require('../app');
 const supertest = require('supertest');
 const User=require('../model/user');
 
-const userOne={
-    name:'UserOne',
-    email:'param@test.com',
-    password:'Welcome512',
-}
-
+const {userOne} = require('./fixtures/db');
 
 beforeEach(async ()=>{
     await User.deleteMany();
@@ -42,17 +37,7 @@ test('login  should fail for non-existing user',async ()=>{
     }).expect(404);
 })
 
-// test('Should delete account for user',async ()=>{
-//     await supertest(server)
-//     .delete('/user/me')
-//     .set('Authorization',`Bearer ${userOne.tokens[0].token}`)
-//     .send()
-//     .expect(200);
 
-//     const user = await User.findOne({email:userOne.email});
-//     expect(user).toBeNull();
-// //    expect(user).not.toBeNull();
-// })
 
 test('Should check if the avatar is uploaded correctly', async ()=>{
      await supertest(server)
@@ -65,4 +50,16 @@ test('Should check if the avatar is uploaded correctly', async ()=>{
 
      expect(user.avatar).toEqual(expect.any(Buffer));
 
+})
+
+test('Should delete account for user',async ()=>{
+    await supertest(server)
+    .delete('/user/me')
+    .set('Authorization',`Bearer ${userOne.tokens[0].token}`)
+    .send()
+    .expect(200);
+
+    const user = await User.findOne({email:userOne.email});
+    expect(user).toBeNull();
+//    expect(user).not.toBeNull();
 })

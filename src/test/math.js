@@ -2,9 +2,9 @@ const fahrenheitToCelsius = (temp) => {
     return (temp - 32) / 1.8
 }
 
-const celsiusToFahrenheit = (temp) => {
-    return (temp * 1.8) + 32
-}
+// const celsiusToFahrenheit = (temp) => {
+//     return (temp * 1.8) + 32
+// }
 
 // async function* demo(){
 //     for(let i=0;i<5;i++){
@@ -17,11 +17,12 @@ const celsiusToFahrenheit = (temp) => {
 //           return v;
 //       }
 // }
-const add = (x,y)=>{
-    return new Promise(function(resolve,reject){
-        setTimeout(function(){resolve(x+y)},2000)
-    });
-}
+
+// const add = (x,y)=>{
+//     return new Promise(function(resolve,reject){
+//         setTimeout(function(){resolve(x+y)},2000)
+//     });
+// }
 
 
 
